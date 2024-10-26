@@ -68,7 +68,7 @@ def run():
 def rag():
     # Rag Directory
     storage_dir = ROOT_DIR / "storage"
-    rag_data_dir = ROOT_DIR / "storage/datastore/afya.pdf"
+    rag_data_dir = ROOT_DIR / "storage/datastore/mwongozo_wa_chakula_bora_tanzania.pdf"
 
     if not storage_dir.exists():
         return Response("Storage directory not found", status=404)
@@ -96,7 +96,7 @@ def rag_vector():
     try:
         retriever = vector_store_retriever(ROOT_DIR=ROOT_DIR)
         if retriever:
-            response_ = retriever.invoke("what is career")
+            response_ = retriever.invoke("Chakula ni nini?")
             print(response_[0].page_content)
             return Response("rag"), 200
         else:
