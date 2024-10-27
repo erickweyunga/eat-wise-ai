@@ -38,6 +38,7 @@ def vector_store_retriever(ROOT_DIR):
         search_type="mmr",
         search_kwargs={"k": 3, "fetch_k": 100,},
     )
+    
     return  retriever
 
 

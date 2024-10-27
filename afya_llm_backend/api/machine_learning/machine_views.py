@@ -42,17 +42,21 @@ def run():
             retriever = vector_store_retriever(ROOT_DIR=ROOT_DIR)
             logging.info(f"Retriever retrieved successfully!")
             if retriever:
-                response_ = retriever.invoke(input=message)
+                response_ = retriever.invoke(message)
+                knowledge = []
+                for response_ in response_:
+                    knowledge.append(response_.page_content)
+                print(knowledge)
 
                 config = {
                     "user_id": "1",
                     "conversation_id": "1",
-                    "knowledge_base": response_,
+                    "knowledge_base": knowledge,
                 }
 
                 # Response from machine
                 res = chatbot(config=config, message=message)
-                return jsonify({"message": res.content})
+                return jsonify({"text": res.content})
             else:
                 logging.error("Retriever unregistered")
                 return Response("Retriever unregistered", status=404)

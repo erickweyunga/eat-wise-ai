@@ -9,7 +9,7 @@ from flask_cors import CORS
 # blueprints
 from api.machine_learning import machine_views
 from api import main
-
+from api.intents import views
 
 def create_app():
     ##########################################
@@ -69,6 +69,7 @@ def create_app():
     ##########################################
 
     app.register_blueprint(machine_views.bp, url_prefix="/afya")
-    app.register_blueprint(main.bp, url_prefix="/api")
+    app.register_blueprint(views.bp, url_prefix="/afya")
+    app.register_blueprint(main.bp, url_prefix="/afya")
     
     return app
