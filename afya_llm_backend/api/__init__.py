@@ -12,15 +12,16 @@ from api import main
 from api.intents import views
 
 def create_app():
+    
     ##########################################
     # Environment Variables
     ##########################################
-    client_origin_url = os.environ.get("CLIENT_ORIGIN_URL")
-    auth0_audience = os.environ.get("AUTH0_AUDIENCE")
-    auth0_domain = os.environ.get("AUTH0_DOMAIN")
+    api_token = os.environ.get("DEEPINFRA_API_TOKEN")
+    llm = os.environ.get("DEEPINFRA_LANG_MODEL")
+    embedding_model = os.environ.get("DEEPINFRA_EMBEDDING_MODEL")
     secrete_key = os.environ.get("SECRET_KEY")
 
-    if not (client_origin_url and auth0_audience and auth0_domain):
+    if not (api_token and llm and embedding_model and secrete_key):
         raise NameError(
             "The required environment variables are missing. Check .env file."
         )

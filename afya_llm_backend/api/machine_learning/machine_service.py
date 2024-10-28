@@ -10,7 +10,6 @@ from langchain_core.messages import BaseMessage
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.pydantic_v1 import BaseModel, Field
 from langchain_core.runnables import (
-    RunnableLambda,
     ConfigurableFieldSpec,
     RunnablePassthrough,
 )
@@ -47,10 +46,11 @@ def get_session_history(user_id: str, conversation_id: str) -> BaseChatMessageHi
 dotenv.load_dotenv()
 
 DEEPINFRA_API_TOKEN = os.environ["DEEPINFRA_API_TOKEN"]
+DEEPINFRA_LANG_MODEL = os.environ["DEEPINFRA_LANG_MODEL"]
 
 # Defining the model
 model = ChatDeepInfra(
-    model_id="meta-llama/Meta-Llama-3.1-8B-Instruct",
+    model_id=DEEPINFRA_LANG_MODEL,
     deepinfra_api_token=DEEPINFRA_API_TOKEN,
     top_k=1,
     temperature=0.8,
