@@ -8,7 +8,8 @@ import dotenv
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.messages import BaseMessage
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.pydantic_v1 import BaseModel, Field
+# Changed import to use pydantic directly instead of through langchain
+from pydantic.v1 import BaseModel, Field
 from langchain_core.runnables import (
     ConfigurableFieldSpec,
     RunnablePassthrough,
@@ -20,6 +21,10 @@ class InMemoryHistory(BaseChatMessageHistory, BaseModel):
     """In memory implementation of chat message history."""
 
     messages: List[BaseMessage] = Field(default_factory=list)
+    
+    # Added Config class with arbitrary_types_allowed
+    class Config:
+        arbitrary_types_allowed = True
 
     def add_messages(self, messages: List[BaseMessage]) -> None:
         """Add a list of messages to the store"""

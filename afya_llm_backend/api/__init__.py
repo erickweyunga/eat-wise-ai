@@ -18,7 +18,7 @@ def create_app():
     ##########################################
     api_token = os.environ.get("DEEPINFRA_API_TOKEN")
     llm = os.environ.get("DEEPINFRA_LANG_MODEL")
-    embedding_model = os.environ.get("DEEPINFRA_EMBEDDING_MODEL")
+    embedding_model = os.environ.get("DEEPINFRA_EMBEDDINGS_MODEL")  # Fixed variable name here
     secrete_key = os.environ.get("SECRET_KEY")
 
     if not (api_token and llm and embedding_model and secrete_key):

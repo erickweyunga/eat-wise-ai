@@ -1,5 +1,5 @@
 "use server"
-const api_url = process.env.BACKEND_URL;
+const api_url = "http://localhost:6060";
 export async function getResponse(message: string) {
 
     type ResponseData = {
